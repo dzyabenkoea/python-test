@@ -1,7 +1,7 @@
 import datetime as dt
 from fastapi import FastAPI, HTTPException, Query
 from database import engine, Session, Base, City, User, Picnic, PicnicRegistration
-from external_requests import WeatherController
+from weather_controller import WeatherController
 from models import RegisterUserRequest, UserModel
 from api_helpers import picnic_table_to_list
 
