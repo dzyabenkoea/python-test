@@ -8,6 +8,7 @@ from api_helpers import picnic_table_to_list
 app = FastAPI()
 weather_controller = WeatherController()
 
+
 @app.get('/cities', summary='Список городов', tags=['Cities'])
 def cities_list(q: str = Query(description="Название города", default=None)):
     """
