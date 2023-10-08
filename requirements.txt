@@ -5,7 +5,7 @@ chardet==4.0.0
 click==7.1.2
 colorama==0.4.4
 fastapi==0.63.0
-greenlet==1.0.0
+greenlet
 h11==0.12.0
 idna==2.10
 iniconfig==1.1.1
@@ -23,4 +23,4 @@ toml==0.10.2
 typing-extensions==3.7.4.3
 urllib3==1.26.4
 uvicorn==0.13.4
-psycopg2-binary==2.8.6
+psycopg2-binary

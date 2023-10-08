@@ -1,10 +1,21 @@
+import logging
+
 from sqlalchemy import create_engine, Column, Integer, String, ForeignKey, DateTime
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, relationship
-from external_requests import GetWeatherRequest
+from external_requests import WeatherController
+import os
+import psycopg2
 
 # Создание сессии
-SQLALCHEMY_DATABASE_URI = 'sqlite:///test.db'
+DB_HOST = os.environ.get('DATABASE_HOST')
+DB_PORT = os.environ.get('DATABASE_PORT')
+DB_NAME = os.environ.get('DATABASE_NAME')
+DB_USER = os.environ.get('DATABASE_USER')
+DB_PASSWORD = os.environ.get('DATABASE_PASSWORD')
+
+SQLALCHEMY_DATABASE_URI = f'postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}'
+logging.debug(SQLALCHEMY_DATABASE_URI)
 engine = create_engine(SQLALCHEMY_DATABASE_URI)
 Session = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
@@ -26,7 +37,7 @@ class City(Base):
         """
         Возвращает текущую погоду в этом городе
         """
-        r = GetWeatherRequest()
+        r = WeatherController()
         weather = r.get_weather(self.name)
         return weather
 
